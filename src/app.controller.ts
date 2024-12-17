@@ -1,13 +1,15 @@
-import { Controller, Get } from '@nestjs/common'
+import { Controller, Get, HttpCode, HttpStatus } from '@nestjs/common'
+import { ApiTags } from '@nestjs/swagger'
 
-import { AppService } from './app.service'
+import { ResponseMessage } from '@/decorators/response-message.decorator'
 
+@ApiTags('Apps')
 @Controller()
 export class AppController {
-	constructor(private readonly appService: AppService) {}
-
 	@Get()
-	getHello(): string {
-		return this.appService.getHello()
+	@HttpCode(HttpStatus.OK)
+	@ResponseMessage('Say hello successfully')
+	sayHello() {
+		return `Hello world`
 	}
 }
