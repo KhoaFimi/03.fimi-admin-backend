@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  fimi_postgres:
+    image: postgres:13.5
+    container_name: fimi_postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+    volumes:
+      - ./postgres_db:/var/lib/postgresql/data
+    ports:
+      - '${POSTGRES_PORT}:5432'
+
+  fimi_redis:
+    container_name: fimi_redis
+    image: redis:alpine
+    expose:
+      - 6379
+    ports:
+      - 6379:6379
+    restart: unless-stopped
+
+  redis_commander:
+    container_name: redis_commander
+    image: rediscommander/redis-commander:latest
+    environment:
+      - REDIS_HOSTS=local:fimi_redis:6379
+    ports:
+      - 8088:8081
+    depends_on:
+      - fimi_redis
+    restart: unless-stopped
+
+networks:
+  default:
+    driver: bridge
+  postgres:
+    driver: bridge

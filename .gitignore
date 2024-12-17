@@ -28,6 +28,9 @@ lerna-debug.log*
 .settings/
 *.sublime-workspace
 
+# Docker volumes
+postgres_db
+
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
@@ -41,6 +44,7 @@ lerna-debug.log*
 .env.test.local
 .env.production.local
 .env.local
+.env.development
 
 # temp directory
 .temp
