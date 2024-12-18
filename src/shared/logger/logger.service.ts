@@ -32,7 +32,7 @@ const customLevels = {
 		debug: 'blue',
 		verbose: 'cyan',
 		input: 'grey',
-		silly: 'magenta',
+		silly: 'pink',
 		data: 'white',
 		http: 'magenta',
 		help: 'cyan',

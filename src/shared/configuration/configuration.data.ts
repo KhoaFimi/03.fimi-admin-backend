@@ -17,7 +17,7 @@ export const databaseConfigData = registerAs('database', () => ({
 	databaseUrl: process.env.DATABASE_URL,
 	postgresUser: process.env.POSTGRES_USER,
 	postgresPassword: process.env.POSTGRES_PASSWORD,
-	postgresPort: process.env.POSTGRES_PORT,
+	postgresPort: parseInt(process.env.POSTGRES_PORT),
 	postgresHost: process.env.POSTGRES_HOST,
 	postgresDb: process.env.POSTGRES_DB
 }))
